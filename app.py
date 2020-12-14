@@ -3,8 +3,8 @@ from redis import Redis, RedisError, StrictRedis
 import pandas as pd
 from gensim.models import Doc2Vec
 
-model = Doc2Vec.load("F:/docker/redis2/doc2vec.model")
-data  = pd.read_csv('F:/docker/redis2/Tweet_Processed.csv')
+model = Doc2Vec.load("doc2vec.model")
+data  = pd.read_csv('Tweet_Processed.csv')
 
 app = Flask(__name__)
 
