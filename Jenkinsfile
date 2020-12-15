@@ -6,29 +6,13 @@ pipeline{
     stage('Build'){
       steps{
        echo 'Building App'
-       bat 'docker build -t myapp2 .'
+       bat 'docker-compose up'
         }
       }
-    stage('Run'){
+    stage('Down'){
       steps{
-       echo 'Running'
-       bat 'docker run -d -p 5000:5000 --name myapp2_c myapp2'
-       bat 'docker run -d -p 6379:6379 --name myredis redis'
-        }
-      }
-    stage('Test'){
-      steps{
-       echo 'Testing'
-       bat 'python test_app.py'
-        }
-      }
-    stage('Remove'){
-      steps{
-       echo 'Remove'
-       bat 'docker stop myapp2_c'
-       bat 'docker rmi -f myapp2'
-       bat 'docker stop myredis'
-       bat 'docker rm -f myredis'
+       echo 'Down'
+       bat 'docker-compose up'
         }
       }
     stage('Finish'){
