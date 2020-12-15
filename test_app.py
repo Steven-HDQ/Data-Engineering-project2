@@ -1,7 +1,8 @@
 import unittest
 import os
 import requests
-import re
+import grequests
+import time
 
 class FlaskTests(unittest.TestCase):
 	
@@ -30,6 +31,21 @@ class FlaskTests(unittest.TestCase):
 		self.assertEqual(responce.status_code, 200)
 		self.assertEqual('Similar Tweets:' in responce.text,True)
 	
+	def test_4_test_text(self):
+		start = time.time()
+		test_num=1000
+		success_num=0
+		fail_num=0
+		req_list = [grequests.get('http://localhost:5000') for i in range(test_num)]
+		res_list = grequests.map(req_list)
+		for res in res_list:
+			if res.status_code==200:
+				success_num+=1
+			else:
+				fail_num+=1
+		end = time.time()
+		self.assertEqual(success_num, test_num)
+		self.assertEqual((end-start)<60 ,True)
 
 if __name__ == '__main__':
 	unittest.main()		
