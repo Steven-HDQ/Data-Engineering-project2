@@ -13,6 +13,7 @@ pipeline{
       steps{
        echo 'Running'
        bat 'docker run -d -p 5000:5000 --name myapp2_c myapp2'
+       bat 'docker run -d -p 6379:6379 --name myredis redis'
         }
       }
     stage('Test'){
@@ -26,6 +27,8 @@ pipeline{
        echo 'Remove'
        bat 'docker stop myapp2_c'
        bat 'docker rmi -f myapp2'
+       bat 'docker stop myredis'
+       bat 'docker rm -f myredis'
         }
       }
     stage('Finish'){
