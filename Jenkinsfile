@@ -13,10 +13,15 @@ pipeline{
       steps{
        echo 'Running'
        bat 'docker run -d -p 5000:5000 --name myapp2_c myapp2'
-       bat 'docker run -d -p 6379:6379 --name myredis redis'
+       bat 'docker run -d -p 6379:6379 --name myredis redis:alpine'
         }
       }
-
+    stage('Test'){
+      steps{
+       echo 'Testing'
+       bat 'python test_app.py'
+        }
+      }
       stage('Remove'){
       steps{
        echo 'Removing'
