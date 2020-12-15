@@ -24,8 +24,8 @@ pipeline{
     stage('Remove'){
       steps{
        echo 'Remove'
-       docker stop myapp2_c
-       docker rmi -f myapp2
+       bat 'docker stop myapp2_c'
+       bat 'docker rmi -f myapp2'
         }
       }
     stage('Finish'){
