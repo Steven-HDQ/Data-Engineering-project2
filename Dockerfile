@@ -6,7 +6,7 @@ ENV FLASK_APP=app.py
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt 
+RUN pip install -i https://pypi.douban.com/simple/ -r requirements.txt 
 
 COPY . .
 
