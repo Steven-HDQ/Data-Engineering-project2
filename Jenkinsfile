@@ -16,12 +16,7 @@ pipeline{
        bat 'docker run -d -p 6379:6379 --name myredis redis'
         }
       }
-    stage('Test'){
-      steps{
-       echo 'Testing'
-       bat 'python test_app.py'
-        }
-      }    
+
       stage('Remove'){
       steps{
        echo 'Removing'
