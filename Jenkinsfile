@@ -11,14 +11,21 @@ pipeline{
       }
     stage('Run'){
       steps{
-       echo 'running'
-       bat 'docker-compose up'
+       echo 'Running'
+       bat 'docker run -d -p 5000:5000 --name myapp2_c myapp2'
         }
       }
     stage('Test'){
       steps{
        echo 'Testing'
-       python test_app.py
+       bat 'python test_app.py'
+        }
+      }
+    stage('Remove'){
+      steps{
+       echo 'Remove'
+       docker stop myapp2_c
+       docker rmi -f myapp2
         }
       }
     stage('Finish'){
