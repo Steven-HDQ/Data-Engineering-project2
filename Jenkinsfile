@@ -6,13 +6,13 @@ pipeline{
     stage('Build'){
       steps{
        echo 'Building App'
-       sh 'docker build -t myapp2'
+       bat 'docker build -t myapp2'
         }
       }
     stage('Run'){
       steps{
        echo 'running'
-       sh 'docker-compose up'
+       bat 'docker-compose up'
         }
       }
     stage('Test'){
