@@ -1,13 +1,13 @@
 def build_app(){
-  sh 'docker-compose up -d'
+  bat 'docker-compose up -d'
 }
 
 def test_app(){
-  sh 'python test_app.py'
+  bat 'python test_app.py'
 }
 
 def down_app(){
-  sh 'docker-compose down'
+  bat 'docker-compose down'
 }
 
 def release_app(){
