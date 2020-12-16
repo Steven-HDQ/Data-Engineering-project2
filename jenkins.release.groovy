@@ -4,7 +4,7 @@ def build_app(){
 
 def e2e_test(){
   echo 'release-specific testing here'
-
+  bat 'python stress_test.py'
 }
 def user_acceptance(){
   input "proceed with deployment to live?"
