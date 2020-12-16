@@ -1,40 +1,44 @@
-
+def groovyfile
 pipeline{
   agent any
   
   stages {
-    stage('Build'){
+
+	  stage ('Build Script'){
+	  	steps{
+			script{
+				 def filename = 'jenkins.' + env.BRANCH_NAME + '.groovy'
+				 groovyfile = load filename
+			}
+		}
+	  }
+    
+    stage('Build Flask app'){
       steps{
-       echo 'Building App'
-       bat 'docker build -t myapp2 .'
+        script{
+          groovyfile.build_app()
         }
       }
-    stage('Run'){
+    }
+    stage('Testing'){
       steps{
-       echo 'Running'
-       bat 'docker run -d -p 5000:5000 --name myapp2_c myapp2'
-       bat 'docker run -d -p 6379:6379 --name myredis redis:alpine'
+        script{
+          groovyfile.test_app()
         }
       }
-    stage('Test'){
+    }
+    stage('Docker images down'){
       steps{
-       echo 'Testing'
-       bat 'python test_app.py'
+        script{
+          groovyfile.down_app()
         }
       }
-      stage('Remove'){
-      steps{
-       echo 'Removing'
-       bat 'docker stop myapp2_c'
-       bat 'docker rm myapp2_c'
-       bat 'docker rmi -f myapp2'
-       bat 'docker stop myredis'
-       bat 'docker rm myredis'
-        }
-      }
-    stage('Finish'){
-      steps{
-       echo 'Success!'
+	}
+      stage('creating release branch'){
+        steps{
+		script{
+          groovyfile.release_app()
+		}
         }
       }
     }
