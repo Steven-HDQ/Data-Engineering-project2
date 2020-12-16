@@ -3,6 +3,7 @@ def build_app(){
 }
 
 def test_app(){
+  echo 'Test the app'
   bat 'python test_app.py'
 }
 
