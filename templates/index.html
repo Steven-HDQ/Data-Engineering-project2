@@ -1,0 +1,28 @@
+<HTML>
+    <title>Twitter Sentence Search Application</title>
+    
+    <Body style="background-image:url(https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/logos/card_wide_blue.png); background-repeat:no-repeat; background-attachment:fixed; background-size: 100% 100%; width: 100%;height: 100%;">
+    
+    <form method="POST" action="">
+        <center>
+        <br><br><br><br><br><H1> <body>
+            <p style="color:rgb(255, 255, 255);">Twitter Sentence Search</p>
+            </body> </H1>
+        <H3><p style="color:rgb(12, 5, 112);">Please input a text or sentence: </p></H3>
+        <textarea cols="60" rows="5" name= "text">{{text}}</textarea><br><br>
+        <input type="hidden" name="test_text" />
+        <input type = "submit" value="Submit"style="background-color: rgb(4, 104, 218);width:80px;height:40px;color:rgb(255, 255, 255)"><br><br>
+        <H2><p style="color:rgb(255, 255, 255);">{{head}}</p></H2>
+        </center>
+        <H3><p style="color:rgb(12, 5, 112);overflow:auto;">
+            {% for sim,tweet in result %} 
+            Similar:{{sim}}%<br>
+            Tweet: {{tweet}}<br><br>
+            {% endfor %} 
+        </p></H3>
+    
+        
+    </form>
+    
+    </BODY>
+</HTML>
