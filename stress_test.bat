@@ -1,1 +1,0 @@
-python stress_test.py

@@ -37,10 +37,11 @@ class FlaskTests(unittest.TestCase):
 		success_num=0
 		fail_num=0
 		req_list = [grequests.get('http://localhost:5000') for i in range(test_num)]
-		res_list = grequests.map(req_list)
+		res_list = grequests.map(req_list,size=100)
 		for res in res_list:
-			if res.status_code==200:
-				success_num+=1
+			if res is not None:
+				if res.status_code==200:
+					success_num+=1
 			else:
 				fail_num+=1
 		end = time.time()
@@ -62,8 +63,9 @@ class FlaskTests(unittest.TestCase):
 		req_list = [grequests.post('http://localhost:5000',data=params) for i in range(test_num)]
 		res_list = grequests.map(req_list,size=100)
 		for res in res_list:
-			if res.status_code==200:
-				success_num+=1
+			if res is not None:
+				if res.status_code==200:
+					success_num+=1
 			else:
 				fail_num+=1
 		end = time.time()
