@@ -11,5 +11,6 @@ RUN pip install -i https://pypi.douban.com/simple/ -r requirements.txt
 COPY . .
 
 EXPOSE 5000
+EXPOSE 8010
 
 CMD ["python", "app.py"]
