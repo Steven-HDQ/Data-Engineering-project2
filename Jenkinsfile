@@ -3,7 +3,7 @@ pipeline{
   agent any
   
   stages {
-    
+
 	  stage ('Build Script'){
 	  	steps{
 			script{
@@ -13,7 +13,7 @@ pipeline{
 		}
 	  }
     
-    stage('Build App'){
+    stage('Build Flask app'){
       steps{
         script{
           groovyfile.build_app()
@@ -34,10 +34,10 @@ pipeline{
         }
       }
 	}
-      stage(' Merge to main'){
+      stage('creating release branch'){
         steps{
 		script{
-          groovyfile.live_app()
+          groovyfile.release_app()
 		}
         }
       }
